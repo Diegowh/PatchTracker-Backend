@@ -1,4 +1,4 @@
-PATCH_V = "6.10"
+PATCH_V = "6.08"
 BASE_URL = "https://playvalorant.com/"
 english = "en-us"
 spanish = "es-es"

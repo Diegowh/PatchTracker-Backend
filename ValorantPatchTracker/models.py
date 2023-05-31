@@ -28,3 +28,8 @@ class BugFixes(models.Model):
 class KnownIssues(models.Model):
     patch_note = models.ForeignKey(PatchNote, on_delete=models.CASCADE)
     issue_detail = models.TextField()
+    
+# class GameplaySystemUpdates(models.Model):
+#     patch_note = models.ForeignKey(PatchNote, on_delete=models.CASCADE)
+#     introduction = models.TextField()
+#     details = models
