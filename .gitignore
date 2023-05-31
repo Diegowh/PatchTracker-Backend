@@ -1,3 +1,6 @@
 .venv
-playground.py
 .env
+
+# development files
+example.html
+playground.py
