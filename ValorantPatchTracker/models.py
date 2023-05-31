@@ -3,22 +3,28 @@ from django.db import models
 class PatchNote(models.Model):
     version = models.CharField(max_length=10)
     release_date = models.DateField()
-    general_updates = models.TextField()
-    known_issues = models.TextField()
 
-class AgentUpdate(models.Model):
+class GeneralUpdates(models.Model):
+    patch_note = models.ForeignKey(PatchNote, on_delete=models.CASCADE)
+    update_detail = models.TextField()
+
+class AgentUpdates(models.Model):
     patch_note = models.ForeignKey(PatchNote, on_delete=models.CASCADE)
     agent_name = models.CharField(max_length=50)
-    update_details = models.TextField()
+    update_detail = models.TextField()
 
-class CosmeticUpdate(models.Model):
+class CosmeticUpdates(models.Model):
     patch_note = models.ForeignKey(PatchNote, on_delete=models.CASCADE)
-    update_details = models.TextField()
+    update_detail = models.TextField()
 
-class SystemExperienceUpdate(models.Model):
+class SystemExperienceUpdates(models.Model):
     patch_note = models.ForeignKey(PatchNote, on_delete=models.CASCADE)
-    update_details = models.TextField()
+    update_detail = models.TextField()
 
-class BugFix(models.Model):
+class BugFixes(models.Model):
     patch_note = models.ForeignKey(PatchNote, on_delete=models.CASCADE)
-    fix_details = models.TextField()
+    fix_detail = models.TextField()
+
+class KnownIssues(models.Model):
+    patch_note = models.ForeignKey(PatchNote, on_delete=models.CASCADE)
+    issue_detail = models.TextField()
