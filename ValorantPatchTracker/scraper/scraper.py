@@ -58,10 +58,11 @@ class Scraper(TagRemover):
         
         self._replace_tags(div_main, tags_to_replace)
         self._remove_comments(div_main)
+        div_main = self._get_content(div_main)
         
         print(div_main)
-        
-        return self.soup
+
+        return div_main
 
     def _get_patch_elements(self, div_main):
         '''Remove elements until h2 tag is found'''
@@ -85,6 +86,10 @@ class Scraper(TagRemover):
         comments = div_main.find_all(string=self.is_comment)
         for comment in comments:
             comment.extract()
+            
+    def _get_content(self, div_container):
+        return ''.join(str(content) for content in div_container.contents)
+    
 
 url = url_generator(PATCH_V)
 scraper = Scraper(url)
