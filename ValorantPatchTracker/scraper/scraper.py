@@ -1,8 +1,9 @@
 import pip._vendor.requests as requests
 from bs4 import BeautifulSoup, NavigableString, Comment
 from utils import url_generator, PATCH_V
+from tag_remover import TagRemover
 
-class Scraper():
+class Scraper(TagRemover):
     def __init__(self, url) -> None:
         self.url = url
         self.soup = self._soup()
@@ -67,17 +68,23 @@ class Scraper():
             div_main (BeautifulSoup object): The div main object to clean.
             tags (list): List of tags to remove. Optionally, a tag can be a tuple
                         where the first item is the tag and the second item is the class.
+                        If the tag is h2, the second item is the text of the h2 to be removed.
         '''
         for tag in tags:
             if isinstance(tag, tuple):
-                tag_name, tag_class = tag
-                element = div_main.find(tag_name, class_=tag_class)
-                if element is None:
-                    print(f'{tag_name}.{tag_class} not found.')
-                else:
-                    element.decompose()
+                tag_name, tag_property = tag
+                if tag_name == 'h2':
+                    elements = div_main.find_all(tag_name)
+                    for element in elements:
+                        if element.text.strip() == tag_property:
+                            element.decompose()
+                else:            
+                    element = div_main.find(tag_name, class_=tag_property)
+                    if element is None:
+                        print(f'{tag_name}.{tag_property} not found.')
+                    else:
+                        element.decompose()
             else:
-                
                 for element in div_main(tag):
                     element.decompose()
                 
