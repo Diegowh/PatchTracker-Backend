@@ -1,11 +1,12 @@
 import pip._vendor.requests as requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, NavigableString, Comment
 from utils import url_generator, PATCH_V
 
 class Scraper():
     def __init__(self, url) -> None:
         self.url = url
         self.soup = self._soup()
+        self.clean_soup = self.soup_cleaner()
         
     def _soup(self):
         """Fetches the webpage from the given URL and parses it using BeautifulSoup
@@ -24,40 +25,54 @@ class Scraper():
     
         return soup
 
-    
-    def general_updates(self):
-        """Finds GENERAL UPDATES section and returns a list of updates
 
-        Returns:
-            List[str]: List of updates in the 'GENERAL UPDATES' section.
-            If 'GENERAL UPDATES' section does not exist, returns None
-        """
-        h2 = self.soup.find('h2', string='GENERAL UPDATES')
-        updates = []
-        try:
-            ul = h2.find_next_sibling('ul')
-        except AttributeError:
+    def is_comment(self, element):
+        return isinstance(element, Comment)
+    
+    
+    def soup_cleaner(self):
+        
+        if self.soup is None:
+            print('Soup object is None, unable to clean')
             return None
         
-        for li in ul.find_all('li', recursive=False):  # Using recursive=False to not go into inner ul
-            inner_ul = li.find('ul')  # Find the inner ul
-            if inner_ul:  # if li contains an inner ul
-                nested_li_text = '. '.join(nested_li.get_text(strip=True) for nested_li in inner_ul.find_all('li'))
-                inner_ul.extract()  # remove the inner ul from the li
-                li_text = li.get_text(strip=True) + '. ' + nested_li_text  # Concatenate the outer li text and the inner li text
-            else:
-                li_text = li.get_text(strip=True)  # Get the text of the outer li if there's no inner ul
-                
-            updates.append(li_text)
-                
-        return updates
-    
-    def agent_updates(self):
-        h2 = self.soup.find('h2', string='AGENT UPDATES')
-        
+        div_main = self.soup.find('div', class_='mw-parser-output')
 
+        for element in div_main:
+            if isinstance(element, NavigableString):
+                continue
+            if element.name == 'h2':
+                break
+            else:
+                element.decompose()
+                
+        
+        for svg in div_main('svg'):
+            svg.decompose()
+            
+        for script in div_main('script'):
+            script.decompose()
+            
+        for img in div_main('img'):
+            img.decompose()
+            
+        for a in div_main('a'):
+            a.decompose()
+            
+        comments = div_main.find_all(text=self.is_comment)
+        for comment in comments:
+            comment.extract()
+            
+        print(div_main)
+        # # Elimino tags <img> y <a>
+        # for tag in div_main(True):
+        #     if tag.name not in keep_tags:
+        #         print(tag.name)
+        #         tag.decompose()
+        #     else:
+        #         tag.attrs = {}
+
+        return self.soup
 
 url = url_generator(PATCH_V)
 scraper = Scraper(url)
-
-print(scraper.general_updates())
