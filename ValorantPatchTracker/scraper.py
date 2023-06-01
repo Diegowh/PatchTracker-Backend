@@ -90,7 +90,7 @@ class Scraper():
                 
     def _remove_comments(self, div_main):
         '''Remove comments from div_main'''
-        comments = div_main.find_all(text=self.is_comment)
+        comments = div_main.find_all(string=self.is_comment)
         for comment in comments:
             comment.extract()
 

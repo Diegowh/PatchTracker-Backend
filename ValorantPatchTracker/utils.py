@@ -1,4 +1,4 @@
-PATCH_V = "6.10"
+PATCH_V = "3.08"
 BASE_URL = "https://valorant.fandom.com/wiki/Patch_Notes/"
 
 def url_generator(patch_version: str):
