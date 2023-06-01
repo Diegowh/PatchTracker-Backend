@@ -1,6 +1,6 @@
 import pip._vendor.requests as requests
 from bs4 import BeautifulSoup
-# from utils import url_generator, PATCH_V
+from utils import url_generator, PATCH_V
 
 class Scraper():
     def __init__(self, url) -> None:
@@ -13,7 +13,13 @@ class Scraper():
         Returns:
             BeautifulSoup object: Parsed HTML of the webpage
         """
-        response = requests.get(self.url)
+        try:
+            response = requests.get(self.url)
+            response.raise_for_status()
+        except requests.exceptions.RequestException as e:
+            print(f'Request to {self.url} failed: e')
+            return None
+        
         soup = BeautifulSoup(response.text, 'html.parser')
     
         return soup
@@ -46,12 +52,12 @@ class Scraper():
                 
         return updates
     
-#     def agent_updates(self):
-#         h2 = self.soup.find('h2', string='AGENT UPDATES')
+    def agent_updates(self):
+        h2 = self.soup.find('h2', string='AGENT UPDATES')
         
 
 
-# url = url_generator(PATCH_V)
-# scraper = Scraper(url)
+url = url_generator(PATCH_V)
+scraper = Scraper(url)
 
-# print(scraper.general_updates())
+print(scraper.general_updates())
