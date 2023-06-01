@@ -56,6 +56,12 @@ class Scraper():
         for img in div_main('img'):
             img.decompose()
             
+        for span in div_main.find_all('span'):
+            span.replace_with(span.get_text())
+        
+        for a in div_main.find_all('a'):
+            a.replace_with(a.get_text())
+            
         for a in div_main('a'):
             a.decompose()
             
@@ -63,17 +69,13 @@ class Scraper():
         for comment in comments:
             comment.extract()
             
-        for span in div_main.find_all('span'):
-            span.replace_with(span.get_text())
+        review_div = div_main.find('div', class_='reviews')
+        try:
+            review_div.decompose()
+        except TypeError:
+            pass
             
         print(div_main)
-        # # Elimino tags <img> y <a>
-        # for tag in div_main(True):
-        #     if tag.name not in keep_tags:
-        #         print(tag.name)
-        #         tag.decompose()
-        #     else:
-        #         tag.attrs = {}
 
         return self.soup
 
