@@ -41,9 +41,21 @@ class Scraper(TagRemover):
         
         div_main = self.soup.find('div', class_='mw-parser-output')
         tags_to_remove = ['svg', 'script', 'img', ('div', 'reviews'), 'sup', ('div', 'mw-references-wrap'), 'ol']
+        tags_to_remove_by_class = [('div', 'reviews'), ('div', 'mw-references-wrap')]
+        tags_to_remove_by_text = [('h2', 'References')]
         tags_to_replace = ['span', 'a']
+        
         self._get_patch_elements(div_main)
-        self._remove_tags(div_main, tags_to_remove)
+        
+        for tag in tags_to_remove:
+            self.remove_tag(div_main, tag)
+        
+        for tag, tag_class in tags_to_remove_by_class:
+            self.remove_tag_by_class(div_main, tag, tag_class)
+            
+        for tag, text in tags_to_remove_by_text:
+            self.remove_tag_by_text(div_main, tag, text)
+        
         self._replace_tags(div_main, tags_to_replace)
         self._remove_comments(div_main)
         
@@ -60,33 +72,6 @@ class Scraper(TagRemover):
                 break
             else:
                 element.decompose()
-        
-    def _remove_tags(self, div_main: NavigableString, tags: list):
-        '''Remove specific tags.
-        
-        Args:
-            div_main (BeautifulSoup object): The div main object to clean.
-            tags (list): List of tags to remove. Optionally, a tag can be a tuple
-                        where the first item is the tag and the second item is the class.
-                        If the tag is h2, the second item is the text of the h2 to be removed.
-        '''
-        for tag in tags:
-            if isinstance(tag, tuple):
-                tag_name, tag_property = tag
-                if tag_name == 'h2':
-                    elements = div_main.find_all(tag_name)
-                    for element in elements:
-                        if element.text.strip() == tag_property:
-                            element.decompose()
-                else:            
-                    element = div_main.find(tag_name, class_=tag_property)
-                    if element is None:
-                        print(f'{tag_name}.{tag_property} not found.')
-                    else:
-                        element.decompose()
-            else:
-                for element in div_main(tag):
-                    element.decompose()
                 
     def _replace_tags(self, div_main: NavigableString, tags: list):
         '''Replace tags with their text content.'''

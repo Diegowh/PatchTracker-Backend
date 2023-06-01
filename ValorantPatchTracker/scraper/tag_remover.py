@@ -9,7 +9,7 @@ class TagRemover:
         '''Remove tags by class.'''
         element = div_main.find(tag_name, class_=tag_class)
         if element is None:
-            print(f'{tag_name}.{tag_class} not found.')
+            pass
         else:
             element.decompose()
             
@@ -19,3 +19,8 @@ class TagRemover:
         for element in elements:
             if element.text.strip() == text:
                 element.decompose()
+                
+    def remove_tag(self, div_main: NavigableString, tag: str):
+        '''Remove a tag'''
+        for element in div_main(tag):
+            element.decompose()
