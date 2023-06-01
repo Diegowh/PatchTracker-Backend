@@ -39,13 +39,12 @@ class Scraper():
             return None
         
         div_main = self.soup.find('div', class_='mw-parser-output')
-        tags_to_delete = ['svg', 'script', 'img']
+        tags_to_remove = ['svg', 'script', 'img']
         tags_to_replace = ['span', 'a']
         self._get_patch_elements(div_main)
-        self._remove_tags(div_main, tags_to_delete)
+        self._remove_tags(div_main, tags_to_remove)
         self._replace_tags(div_main, tags_to_replace)
         self._remove_comments(div_main)
-        self._remove_review_div(div_main)
         
         print(div_main)
         
@@ -66,11 +65,21 @@ class Scraper():
         
         Args:
             div_main (BeautifulSoup object): The div main object to clean.
-            tags (list): List of tags to remove
+            tags (list): List of tags to remove. Optionally, a tag can be a tuple
+                        where the first item is the tag and the second item is the class.
         '''
         for tag in tags:
-            for element in div_main(tag):
-                element.decompose()
+            if isinstance(tag, tuple):
+                tag_name, tag_class = tag
+                element = div_main.find(tag_name, class_=tag_class)
+                if element is None:
+                    print(f'{tag_name}.{tag_class} not found.')
+                else:
+                    element.decompose()
+            else:
+                
+                for element in div_main(tag):
+                    element.decompose()
                 
     def _replace_tags(self, div_main: NavigableString, tags: list):
         '''Replace tags with their text content.'''
@@ -84,15 +93,6 @@ class Scraper():
         comments = div_main.find_all(text=self.is_comment)
         for comment in comments:
             comment.extract()
-            
-    def _remove_review_div(self, div_main):
-        '''Removes div.reviews'''
-        review_div = div_main.find('div', class_='reviews')
-        try:
-            review_div.decompose()
-        except TypeError as e:
-            print(f'div.reviews not found: {e}')
-            pass
 
 url = url_generator(PATCH_V)
 scraper = Scraper(url)
