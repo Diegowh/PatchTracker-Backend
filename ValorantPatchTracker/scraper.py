@@ -63,6 +63,9 @@ class Scraper():
         for comment in comments:
             comment.extract()
             
+        for span in div_main.find_all('span'):
+            span.replace_with(span.get_text())
+            
         print(div_main)
         # # Elimino tags <img> y <a>
         # for tag in div_main(True):
