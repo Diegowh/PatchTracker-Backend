@@ -40,8 +40,6 @@ class Scraper(TagRemover):
         self._replace_tags(div_main, tags_to_replace)
         self._remove_comments(div_main)
         div_main = self._get_content(div_main)
-        
-        print(div_main)
 
         return div_main
 
@@ -71,6 +69,3 @@ class Scraper(TagRemover):
     def _get_content(self, div_container):
         return ''.join(str(content) for content in div_container.contents)
     
-
-patch_url = patch_url_generator(PATCH_ENDPOINT)
-scraper = Scraper(patch_url)

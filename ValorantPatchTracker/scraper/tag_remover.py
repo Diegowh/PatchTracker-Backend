@@ -1,4 +1,4 @@
-from bs4 import BeautifulSoup, NavigableString, Comment
+from bs4 import NavigableString
 
 
 class TagRemover:
