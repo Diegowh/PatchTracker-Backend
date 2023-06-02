@@ -18,7 +18,7 @@ class VersionFetcher:
         
         for table in center.find_all('table'):
             version_data = {
-                "episode_name": table.find('caption').text,
+                "episode_name": table.find('caption').text.replace('\n', ''),
             }
             print(version_data)
 
