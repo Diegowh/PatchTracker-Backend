@@ -6,14 +6,14 @@ class Scraper(TagRemover):
     def __init__(self, url) -> None:
         self.url = url
         self.soup = soup(self.url)
-        self.clean_soup = self.soup_cleaner()
+        self.clean_soup = self._soup_cleaner()
 
     def is_comment(self, element):
         '''Check if the element is a comment.'''
         return isinstance(element, Comment)
     
     
-    def soup_cleaner(self):
+    def _soup_cleaner(self):
         '''Clean up the soup object and return the cleaned soup'''
         
         if self.soup is None:
