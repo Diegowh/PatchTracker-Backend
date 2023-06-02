@@ -26,3 +26,5 @@ def soup(url):
     soup = BeautifulSoup(response.text, 'html.parser')
 
     return soup
+
+

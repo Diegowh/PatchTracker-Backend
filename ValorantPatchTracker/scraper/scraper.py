@@ -1,7 +1,7 @@
 from bs4 import NavigableString, Comment
 from utils import patch_url_generator, PATCH_ENDPOINT, soup
 from tag_remover import TagRemover
-from version_fetcher import VersionFetcher
+
 
 class Scraper(TagRemover):
     def __init__(self, patch_endpoint) -> None:

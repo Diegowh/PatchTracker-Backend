@@ -51,6 +51,3 @@ class VersionFetcher:
             episodes.append(episode_data)
             
         return episodes
-
-version_fetcher = VersionFetcher()
-print(version_fetcher.episodes())
