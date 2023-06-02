@@ -2,7 +2,6 @@ import requests
 from bs4 import BeautifulSoup
 
 
-PATCH_ENDPOINT = "/wiki/Patch_Notes/1.02"
 BASE_URL = "https://valorant.fandom.com/wiki/Patch_Notes/"
 
 def patch_url_generator(patch_version: str):
