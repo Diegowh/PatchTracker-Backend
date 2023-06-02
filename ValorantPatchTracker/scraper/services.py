@@ -1,5 +1,6 @@
 from version_fetcher import VersionFetcher
 from scraper import Scraper
+import time
 
 
 def scrap_data():
@@ -13,5 +14,3 @@ def scrap_data():
         all_html.append(patch_html)
         
     return all_html
-
-print(scrap_data())
