@@ -1,5 +1,4 @@
-import pip._vendor.requests as requests
-from bs4 import BeautifulSoup, NavigableString, Comment
+from bs4 import NavigableString, Comment
 from utils import patch_url_generator, PATCH_V, soup
 from tag_remover import TagRemover
 
