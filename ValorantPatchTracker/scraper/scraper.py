@@ -1,31 +1,13 @@
 import pip._vendor.requests as requests
 from bs4 import BeautifulSoup, NavigableString, Comment
-from utils import url_generator, PATCH_V
+from utils import patch_url_generator, PATCH_V, soup
 from tag_remover import TagRemover
 
 class Scraper(TagRemover):
     def __init__(self, url) -> None:
         self.url = url
-        self.soup = self._soup()
+        self.soup = soup(self.url)
         self.clean_soup = self.soup_cleaner()
-        
-    def _soup(self):
-        """Fetches the webpage from the given URL and parses it using BeautifulSoup
-
-        Returns:
-            BeautifulSoup object: Parsed HTML of the webpage
-        """
-        try:
-            response = requests.get(self.url)
-            response.raise_for_status()
-        except requests.exceptions.RequestException as e:
-            print(f'Request to {self.url} failed: e')
-            return None
-        
-        soup = BeautifulSoup(response.text, 'html.parser')
-    
-        return soup
-
 
     def is_comment(self, element):
         '''Check if the element is a comment.'''
@@ -91,5 +73,5 @@ class Scraper(TagRemover):
         return ''.join(str(content) for content in div_container.contents)
     
 
-url = url_generator('0.49')
-scraper = Scraper(url)
+patch_url = patch_url_generator('0.49')
+scraper = Scraper(patch_url)
