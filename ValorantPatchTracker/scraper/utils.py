@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
-BASE_URL = "https://valorant.fandom.com/wiki/Patch_Notes/"
+BASE_URL = "https://valorant.fandom.com/"
 
 def patch_url_generator(patch_version: str):
     """Generates a URL for the patch notes of a specific version of Valorant"""
