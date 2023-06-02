@@ -42,7 +42,7 @@ class Scraper(TagRemover):
         div_main = self.soup.find('div', class_='mw-parser-output')
         tags_to_remove = ['svg', 'script', 'img', ('div', 'reviews'), 'sup', ('div', 'mw-references-wrap'), 'ol']
         tags_to_remove_by_class = [('div', 'reviews'), ('div', 'mw-references-wrap')]
-        tags_to_remove_by_text = [('h2', 'References')]
+        tags_to_remove_by_text = [('h2', 'References'), ('p', 'The following')]
         tags_to_replace = ['span', 'a']
         
         self._get_patch_elements(div_main)
