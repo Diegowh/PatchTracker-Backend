@@ -36,6 +36,7 @@ class VersionFetcher:
             episodes.append(episode_data)
         
         print(episodes)
+        return episodes
 
 version_fetcher = VersionFetcher()
 version_fetcher.episodes()
