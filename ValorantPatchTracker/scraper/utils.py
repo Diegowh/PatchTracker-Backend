@@ -4,9 +4,9 @@ from bs4 import BeautifulSoup
 
 BASE_URL = "https://valorant.fandom.com/"
 
-def patch_url_generator(patch_version: str):
+def patch_url_generator(patch_endpoint: str):
     """Generates a URL for the patch notes of a specific version of Valorant"""
-    return f"{BASE_URL}{patch_version}"
+    return f"{BASE_URL}{patch_endpoint}"
 
 
 def soup(url):
