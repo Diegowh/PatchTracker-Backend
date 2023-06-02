@@ -1,4 +1,4 @@
-import pip._vendor.requests as requests
+import requests
 from bs4 import BeautifulSoup
 
 
