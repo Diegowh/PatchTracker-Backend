@@ -17,7 +17,7 @@ class TagRemover:
         '''Remove h2 tags by text.'''
         elements = div_main.find_all(tag_name)
         for element in elements:
-            if element.text.strip() == text:
+            if text in element.text.strip():
                 element.decompose()
                 
     def remove_tag(self, div_main: NavigableString, tag: str):

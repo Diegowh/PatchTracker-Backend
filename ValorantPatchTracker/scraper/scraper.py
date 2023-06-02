@@ -91,5 +91,5 @@ class Scraper(TagRemover):
         return ''.join(str(content) for content in div_container.contents)
     
 
-url = url_generator(PATCH_V)
+url = url_generator('0.49')
 scraper = Scraper(url)
