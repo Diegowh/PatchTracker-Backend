@@ -7,7 +7,7 @@ class Scraper(TagRemover):
     def __init__(self, patch_endpoint) -> None:
         self.url = patch_url_generator(patch_endpoint)
         self.soup = soup(self.url)
-        self.clean_soup = self._soup_cleaner()
+        self.patch_html = self._soup_cleaner()
 
     def is_comment(self, element):
         '''Check if the element is a comment.'''
