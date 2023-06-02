@@ -1,5 +1,5 @@
 from bs4 import NavigableString, Comment
-from utils import patch_url_generator, PATCH_ENDPOINT, soup
+from utils import patch_url_generator, soup
 from tag_remover import TagRemover
 
 
