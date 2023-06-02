@@ -8,5 +8,3 @@ class VersionFetcher:
     def __init__(self) -> None:
         self.url = URL
         self.soup = soup(self.url)
-        
-    def

@@ -1,5 +1,5 @@
 from bs4 import NavigableString, Comment
-from utils import patch_url_generator, PATCH_V, soup
+from utils import patch_url_generator, PATCH_ENDPOINT, soup
 from tag_remover import TagRemover
 
 class Scraper(TagRemover):
@@ -72,5 +72,5 @@ class Scraper(TagRemover):
         return ''.join(str(content) for content in div_container.contents)
     
 
-patch_url = patch_url_generator('0.49')
+patch_url = patch_url_generator(PATCH_ENDPOINT)
 scraper = Scraper(patch_url)
