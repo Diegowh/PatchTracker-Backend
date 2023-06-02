@@ -1,17 +1,17 @@
 from bs4 import NavigableString, Comment
 from utils import patch_url_generator, PATCH_ENDPOINT, soup
 from tag_remover import TagRemover
+from version_fetcher import VersionFetcher
 
 class Scraper(TagRemover):
-    def __init__(self, url) -> None:
-        self.url = url
+    def __init__(self, patch_endpoint) -> None:
+        self.url = patch_url_generator(patch_endpoint)
         self.soup = soup(self.url)
         self.clean_soup = self._soup_cleaner()
 
     def is_comment(self, element):
         '''Check if the element is a comment.'''
         return isinstance(element, Comment)
-    
     
     def _soup_cleaner(self):
         '''Clean up the soup object and return the cleaned soup'''
