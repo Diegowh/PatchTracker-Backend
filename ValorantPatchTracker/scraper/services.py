@@ -2,7 +2,7 @@ from .version_fetcher import VersionFetcher
 from .scraper import Scraper
 
 
-def scrap_data():
+def all_episodes_data():
     '''Returns a list'''
     episodes = VersionFetcher().episodes()
     
