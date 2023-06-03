@@ -9,6 +9,7 @@ def all_episodes_data():
     for episode in episodes:
         for version in episode['versions']:
             scraper = Scraper(version['patch_endpoint'])
-            version['content'] = scraper.patch_html
+            version['content'] = scraper.patch_html.strip()
+            # version['content'] = "<h1>HTML PLACEHOLDER</h1>"
         
     return episodes
