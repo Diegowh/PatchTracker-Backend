@@ -33,7 +33,7 @@ class DBManager:
         '''Creates content data for the database'''
         Content.objects.create(
             patch_note=patch_note,
-            defaults={'html_content': html_content},
+            html_content=html_content,
         )
         
     def update(self):
