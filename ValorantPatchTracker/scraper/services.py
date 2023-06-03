@@ -12,6 +12,3 @@ def all_episodes_data():
             version['content'] = scraper.patch_html
         
     return episodes
-
-
-print(all_episodes_data())
