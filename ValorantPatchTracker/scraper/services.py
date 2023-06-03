@@ -1,5 +1,5 @@
-from .version_fetcher import VersionFetcher
-from .scraper import Scraper
+from version_fetcher import VersionFetcher
+from scraper import Scraper
 
 
 def all_episodes_data():
@@ -12,3 +12,6 @@ def all_episodes_data():
             version['content'] = scraper.patch_html
         
     return episodes
+
+
+print(all_episodes_data())

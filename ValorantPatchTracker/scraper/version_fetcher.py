@@ -1,4 +1,4 @@
-from .utils import soup
+from utils import soup
 
 
 URL = "https://valorant.fandom.com/wiki/Patch_Notes"
