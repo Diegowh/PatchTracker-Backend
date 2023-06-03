@@ -9,34 +9,32 @@ class DBManager:
     def _create_episodes(self):
         for episode_data in self.episodes_data:
             episode_name = episode_data['episode_name']
-            episode, created = Episode.objects.get_or_create(
+            episode, _ = Episode.objects.update_or_create(
                 episode_name=episode_name,
             )
             
-            if created:
-                self.create_patch_notes(episode, episode_data['versions'])
+            self._create_patch_notes(episode, episode_data['versions'])
                 
                 
     def _create_patch_notes(self, episode, versions):
         for version_data in versions:
             version = version_data['patch']
             release_date = version_data['release_date']
-            patch_note, created = PatchNote.objects.get_or_create(
+            patch_note, _ = PatchNote.objects.update_or_create(
                 version=version,
-                release_date=release_date,
                 episode=episode,
+                defaults={'release_date': release_date}
             )
             
-            if created:
-                self.create_content(patch_note, version_data['content'])
+            self._create_content(patch_note, version_data['content'])
                 
                 
     def _create_content(self, patch_note, html_content):
         '''Creates content data for the database'''
         Content.objects.create(
             patch_note=patch_note,
-            html_content=html_content,
+            defaults={'html_content': html_content},
         )
         
     def manage(self):
-        self.create_episodes()
+        self._create_episodes()
