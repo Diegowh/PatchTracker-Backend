@@ -3,7 +3,7 @@ from .scraper import Scraper
 
 
 def all_episodes_data():
-    '''Returns a list'''
+    '''Returns a list with all episodes and patch data'''
     episodes = VersionFetcher().episodes()
     
     for episode in episodes:
