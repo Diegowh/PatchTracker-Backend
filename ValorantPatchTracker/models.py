@@ -10,4 +10,4 @@ class PatchNote(models.Model):
 
 class Content(models.Model):
     patch_note = models.ForeignKey(PatchNote, on_delete=models.CASCADE)
-    html = models.TextField()
+    html_content = models.TextField()
