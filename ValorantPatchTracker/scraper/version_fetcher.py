@@ -9,12 +9,14 @@ class VersionFetcher:
         self.soup = soup(self.url)
         
     def extract_center_tag(self):
+        '''Extracts "center" tag from the soup.'''
         center = self.soup.find('center')
         p = center.find('p')
         p.extract()
         return center
         
     def extract_episode_data(self, table):
+        '''Extracts episode name from a given table'''
         episode_data = {
             "episode_name": table.find('caption').text.replace('\n', ''),
             "versions": [],
@@ -22,6 +24,7 @@ class VersionFetcher:
         return episode_data
     
     def extract_version_data(self, row):
+        '''Extracts version data from a given row.'''
         cols = row.find_all('td')
         if len(cols) == 3:
             patch = cols[0].text.strip()
@@ -36,6 +39,7 @@ class VersionFetcher:
             return version
         
     def episodes(self):
+        '''Gives a list of all data dict from each episode.'''
         center = self.extract_center_tag()
 
         episodes = []
