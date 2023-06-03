@@ -1,5 +1,5 @@
-from version_fetcher import VersionFetcher
-from scraper import Scraper
+from .version_fetcher import VersionFetcher
+from .scraper import Scraper
 
 
 def all_episodes_data():
