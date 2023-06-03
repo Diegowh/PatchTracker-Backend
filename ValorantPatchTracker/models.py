@@ -4,7 +4,7 @@ class Episode(models.Model):
     episode_name = models.TextField()
 
 class PatchNote(models.Model):
-    version = models.CharField(max_length=10)
+    version = models.CharField(max_length=20)
     release_date = models.TextField()
     episode = models.ForeignKey(Episode, on_delete=models.CASCADE)
 
