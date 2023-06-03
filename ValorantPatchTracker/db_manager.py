@@ -7,14 +7,14 @@ class DBManager:
     def __init__(self) -> None:
         self.episodes_data = all_episodes_data()
         
-    def store_content(self, patch_note, html_content):
-        '''Stores content data into the database'''
+    def create_content(self, patch_note, html_content):
+        '''Creates content data for the database'''
         Content.objects.create(
             patch_note=patch_note,
             html_content=html_content,
         )
         
-    def store_patch_notes(self, episode, versions):
+    def create_patch_notes(self, episode, versions):
         for version_data in versions:
             version = version_data['patch']
             release_date = version_data['release_date']
@@ -25,4 +25,4 @@ class DBManager:
             )
 
             if created:
-                self.store_content(patch_note, version_data['content'])
+                self.create_content(patch_note, version_data['content'])
