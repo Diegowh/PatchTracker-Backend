@@ -36,5 +36,5 @@ class DBManager:
             defaults={'html_content': html_content},
         )
         
-    def manage(self):
+    def update(self):
         self._create_episodes()
