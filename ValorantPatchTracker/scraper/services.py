@@ -1,6 +1,5 @@
-from version_fetcher import VersionFetcher
-from scraper import Scraper
-import time
+from .version_fetcher import VersionFetcher
+from .scraper import Scraper
 
 
 def scrap_data():
