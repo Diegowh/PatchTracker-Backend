@@ -3,6 +3,7 @@ from .scraper import Scraper
 
 
 def scrap_data():
+    '''Returns a list with all html for each patch.'''
     episodes = VersionFetcher().episodes()
     patch_endpoints = [version["patch_endpoint"] for episode in episodes for version in episode["versions"]]
     
