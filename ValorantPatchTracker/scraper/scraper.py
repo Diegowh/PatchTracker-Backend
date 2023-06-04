@@ -41,7 +41,7 @@ class Scraper(TagRemover):
         self._remove_comments(div_main)
         
         for p in div_main.find_all('p'):
-            if len(p.contents) == 1 and p.br:
+            if p.br:
                 p.decompose()
                 
         div_main = self._get_content(div_main)
@@ -49,16 +49,20 @@ class Scraper(TagRemover):
         return div_main
 
     def _get_patch_elements(self, div_main):
-        '''Remove elements until h2 tag is found'''
+        '''Remove elements until h2 or h3 tag is found'''
+        header_found = False
+        elements_to_remove = []
         for element in div_main:
             if isinstance(element, NavigableString):
                 continue
-            if element.name == 'h2':
-                break
-            elif element.name == 'h3':
-                break
-            else:
-                element.decompose()
+            if element.name == 'h2' or element.name == 'h3':
+                header_found = True
+            
+            if not header_found:
+                elements_to_remove.append(element)
+        
+        for element in elements_to_remove:
+            element.decompose()
                 
     def _replace_tags(self, div_main: NavigableString, tags: list):
         '''Replace tags with their text content.'''
