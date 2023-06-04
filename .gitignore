@@ -8,3 +8,5 @@ playground.py
 autogit.sh
 
 migrations
+
+__pycache__
