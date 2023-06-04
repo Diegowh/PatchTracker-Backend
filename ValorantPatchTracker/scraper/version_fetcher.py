@@ -1,4 +1,4 @@
-from .utils import soup
+from utils import soup
 
 
 URL = "https://valorant.fandom.com/wiki/Patch_Notes"
@@ -26,10 +26,10 @@ class VersionFetcher:
     def extract_version_data(self, row):
         '''Extracts version data from a given row.'''
         cols = row.find_all('td')
-        if len(cols) == 3:
-            patch = cols[0].text.strip()
-            patch_endpoint = cols[0].find('a')['href'] if cols[0].find('a') else None
-            release_date = cols[1].text.strip()
+        if len(cols) >= 3:
+            patch = cols[-3].text.strip()
+            patch_endpoint = cols[-3].find('a')['href'] if cols[-3].find('a') else None
+            release_date = cols[-2].text.strip()
 
             version = {
                 "patch": patch,
@@ -54,3 +54,8 @@ class VersionFetcher:
             episodes.append(episode_data)
             
         return episodes
+    
+        
+
+verfetcher = VersionFetcher()
+verfetcher.episodes()
