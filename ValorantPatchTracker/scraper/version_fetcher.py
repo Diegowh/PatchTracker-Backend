@@ -1,4 +1,4 @@
-from utils import soup
+from .utils import soup
 
 
 URL = "https://valorant.fandom.com/wiki/Patch_Notes"
@@ -54,8 +54,3 @@ class VersionFetcher:
             episodes.append(episode_data)
             
         return episodes
-    
-        
-
-verfetcher = VersionFetcher()
-verfetcher.episodes()
