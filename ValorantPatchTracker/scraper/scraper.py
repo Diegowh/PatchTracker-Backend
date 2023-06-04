@@ -50,6 +50,8 @@ class Scraper(TagRemover):
                 continue
             if element.name == 'h2':
                 break
+            elif element.name == 'h3':
+                break
             else:
                 element.decompose()
                 
