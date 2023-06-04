@@ -39,6 +39,11 @@ class Scraper(TagRemover):
         
         self._replace_tags(div_main, tags_to_replace)
         self._remove_comments(div_main)
+        
+        for p in div_main.find_all('p'):
+            if len(p.contents) == 1 and p.br:
+                p.decompose()
+                
         div_main = self._get_content(div_main)
 
         return div_main
