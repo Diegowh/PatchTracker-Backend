@@ -19,5 +19,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('PatchTrackerApp', include('PatchTrackerApp.urls')),
+    path('ValorantPatchTracker', include('ValorantPatchTracker.urls')),
 ]
