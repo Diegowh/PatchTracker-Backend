@@ -2,10 +2,15 @@ from rest_framework import serializers
 from .models import Episode, PatchNote, Content
 
 class EpisodeSerializer(serializers.ModelSerializer):
-    pass
+    class Meta:
+        model = Episode
+        fields = '__all__'
 
 class PatchNoteSerializer(serializers.ModelSerializer):
-    pass
-
+    class Meta:
+        model = PatchNote
+        fields = '__all__'
 class ContentSerializer(serializers.ModelSerializer):
-    pass
+    class Meta:
+        model = Content
+        fields = '__all__'
