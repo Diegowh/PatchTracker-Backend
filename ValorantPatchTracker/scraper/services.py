@@ -1,5 +1,6 @@
 from .version_fetcher import VersionFetcher
 from .scraper import Scraper
+import re
 
 
 def all_episodes_data():
@@ -34,4 +35,7 @@ def style_html(content):
     </html>
     """
     
-    
+def remove_brackets_from_html(html_content):
+    """Removes brackets from h tags in HTML content"""
+    html_without_brackets = re.sub(r'\[\]</(?P<tag>h[1-6])>', r'</\g<tag>>', html_content)
+    return html_without_brackets
