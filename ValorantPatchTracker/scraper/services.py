@@ -10,7 +10,8 @@ def all_episodes_data():
     for episode in episodes:
         for version in episode['versions']:
             scraper = Scraper(version['patch_endpoint'])
-            version['content'] = style_html(scraper.patch_html.strip())
+            cleaned_html = remove_brackets(scraper.patch_html.strip())
+            version['content'] = style_html(cleaned_html)
             # version['content'] = "<h1>HTML PLACEHOLDER</h1>"
         
     return episodes
@@ -35,7 +36,7 @@ def style_html(content):
     </html>
     """
     
-def remove_brackets_from_html(html_content):
+def remove_brackets(html_content):
     """Removes brackets from h tags in HTML content"""
     html_without_brackets = re.sub(r'\[\](?=<\/h[1-6]>)', '', html_content)
     return html_without_brackets
