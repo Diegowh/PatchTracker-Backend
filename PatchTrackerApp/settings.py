@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ValorantPatchTracker',
     'rest_framework',
+    'django-filters',
 ]
 
 MIDDLEWARE = [
