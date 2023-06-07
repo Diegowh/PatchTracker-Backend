@@ -20,12 +20,12 @@ You can access to the frontend repo here: https://github.com/Diegowh/PatchTracke
 http://127.0.0.1:8000/ValorantPatchTracker/
 
 ### Endpoints
-* GET `episodes/`: Return all Episodes for Valorant (including Closed Beta).
-* GET `patchnotes/`: Return all Versions/Patch Notes for Valorant.
-* GET `contents/`: Return all content for each Version/Patch note for Valorant.
+* GET `/episodes/`: Return all Episodes for Valorant (including Closed Beta).
+* GET `/patchnotes/`: Return all Versions/Patch Notes for Valorant.
+* GET `/contents/`: Return all content for each Version/Patch note for Valorant.
 * GET `/contents/?patch_note=<patch_note_id>`: Returns the content for a specific patch note.
 
-## Instalation and Setup
+## Installation and Setup
 > Here are the steps to run the backend on your local machine:
 
 ### Prerequisites
@@ -67,7 +67,7 @@ python manage.py runserver
 
 ## Future scope
 
-In the pipeline is the addition of League of Legends data to the app, allowing users to view the patch ntoes of both Valorant and LoL through a single, unified interface.
+In the pipeline is the addition of League of Legends data to the app, allowing users to view the patch notes of both Valorant and LoL through a single, unified interface.
 
 ## Contributions
 
