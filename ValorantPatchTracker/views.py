@@ -3,6 +3,7 @@ from rest_framework import viewsets
 
 from .models import Episode, PatchNote, Content
 from .serializers import EpisodeSerializer, PatchNoteSerializer, ContentSerializer
+from .filters import ContentFilter
 
 
 class EpisodeView(viewsets.ModelViewSet):
@@ -16,3 +17,4 @@ class PatchNoteView(viewsets.ModelViewSet):
 class ContentView(viewsets.ModelViewSet):
     queryset = Content.objects.all()
     serializer_class = ContentSerializer
+    filterset_class = ContentFilter
