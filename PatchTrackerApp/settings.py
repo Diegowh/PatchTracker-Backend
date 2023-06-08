@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     'ValorantPatchTracker',
     'rest_framework',
     'django_filters',
-    'LoLPatchTracker',
+    'LoLPatchTracker'
 ]
 
 MIDDLEWARE = [
