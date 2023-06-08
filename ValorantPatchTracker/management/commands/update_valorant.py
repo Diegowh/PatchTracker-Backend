@@ -9,4 +9,4 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         db_manager = DBManager()
         db_manager.update()
-        self.stdout.write(self.style.SUCCESS('Database sucessfully updated'))
+        self.stdout.write(self.style.SUCCESS('Valorant Database sucessfully updated'))
