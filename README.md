@@ -1,5 +1,12 @@
 # PatchTracker (Backend)
 
+<<<<<<< HEAD
+## Description
+
+> This repository contains the backend system of an application designed to display patch notes for Valorant and League of Legends. 
+
+##
+=======
 > This repository contains the backend system of an application designed to display patch notes for Valorant. 
 
 ## Tech stack
@@ -75,3 +82,4 @@ This project is open to contributions.
 
 ## License
 This project is licensed under the [MIT License](https://opensource.org/license/mit/) - see the LICENSE file for details.
+>>>>>>> e78fb1255f6a04f43d2530ebaf1417fcd6dce78f
