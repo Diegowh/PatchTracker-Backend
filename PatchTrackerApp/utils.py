@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 
 
 def patch_url_generator(base_url:str, patch_endpoint: str):
-    """Generates a URL for the patch notes of a specific version of Valorant"""
+    """Generates a URL for a specific endpoint."""
     return f"{base_url}{patch_endpoint}"
 
 
