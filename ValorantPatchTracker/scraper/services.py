@@ -1,5 +1,5 @@
 from .version_fetcher import ValorantVersionFetcher
-from .scraper import Scraper
+from .scraper import ValorantScraper
 import re
 
 
@@ -9,7 +9,7 @@ def all_episodes_data():
     
     for episode in episodes:
         for version in episode['versions']:
-            scraper = Scraper(version['patch_endpoint'])
+            scraper = ValorantScraper(version['patch_endpoint'])
             cleaned_html = remove_brackets(scraper.patch_html.strip())
             version['content'] = style_html(cleaned_html)
             # version['content'] = "<h1>HTML PLACEHOLDER</h1>"
