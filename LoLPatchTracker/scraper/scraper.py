@@ -3,8 +3,9 @@ from utils import soup, BASE_URL
 class LoLScraper:
     def __init__(self) -> None:
         self.soup = soup(BASE_URL)
+        self.seasons = self._seasons()
             
-    def seasons(self):
+    def _seasons(self):
         seasons = [li.text for li in self.find_seasons_ul() if li.text != '\n']
         return seasons
         
