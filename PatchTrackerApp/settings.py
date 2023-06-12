@@ -129,3 +129,4 @@ REST_FRAMEWORK = {
 # Scraper 
 VALORANT_WIKI = "https://valorant.fandom.com/"
 LOL_WIKI = "https://leagueoflegends.fandom.com/wiki/Patch_(League_of_Legends)"
+VALORANT_WIKI_PATCH_NOTES = "https://valorant.fandom.com/wiki/Patch_Notes"

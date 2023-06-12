@@ -1,4 +1,5 @@
 from ...PatchTrackerApp.utils import  soup
+from django.conf import settings
 
 
 
@@ -6,7 +7,7 @@ URL = "https://valorant.fandom.com/wiki/Patch_Notes"
 
 class ValorantVersionFetcher:
     def __init__(self) -> None:
-        self.url = URL
+        self.url = settings.VALORANT_WIKI_PATCH_NOTES
         self.soup = soup(self.url)
         
     def extract_center_tag(self):
