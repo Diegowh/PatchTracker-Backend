@@ -1,11 +1,11 @@
-from .version_fetcher import VersionFetcher
+from .version_fetcher import ValorantVersionFetcher
 from .scraper import Scraper
 import re
 
 
 def all_episodes_data():
     '''Returns a list with all episodes and patch data'''
-    episodes = VersionFetcher().episodes()
+    episodes = ValorantVersionFetcher().episodes()
     
     for episode in episodes:
         for version in episode['versions']:
