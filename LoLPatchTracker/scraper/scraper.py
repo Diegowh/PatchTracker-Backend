@@ -26,5 +26,3 @@ class LoLScraper:
             else:
                 print("No A tag found.")
         return endpoint_dict
-    
-scraper = LoLScraper()
