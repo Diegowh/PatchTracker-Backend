@@ -125,3 +125,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
+
+# Scraper 
+VALORANT_WIKI = "https://valorant.fandom.com/"
+LOL_WIKI = "https://leagueoflegends.fandom.com/wiki/Patch_(League_of_Legends)"
