@@ -3,7 +3,7 @@ from .utils import patch_url_generator, soup
 from .tag_remover import TagRemover
 
 
-class Scraper(TagRemover):
+class ValorantScraper(TagRemover):
     def __init__(self, patch_endpoint) -> None:
         self.url = patch_url_generator(patch_endpoint)
         self.soup = soup(self.url)
