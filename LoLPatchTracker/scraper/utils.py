@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
+BASE_URL = "https://leagueoflegends.fandom.com/wiki/Patch_(League_of_Legends)"
 
 def soup(url):
     """Fetches the webpage from the given URL and parses it using BeautifulSoup
