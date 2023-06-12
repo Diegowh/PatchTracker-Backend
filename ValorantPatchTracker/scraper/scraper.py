@@ -1,12 +1,11 @@
 from bs4 import NavigableString, Comment
 from ...PatchTrackerApp.utils import url_generator, soup
 from .tag_remover import TagRemover
-
-VALORANT_WIKI = "https://valorant.fandom.com/"
+from django.conf import settings
 
 class ValorantScraper(TagRemover):
     def __init__(self, patch_endpoint) -> None:
-        self.url = url_generator(VALORANT_WIKI, patch_endpoint)
+        self.url = url_generator(settings.VALORANT_WIKI, patch_endpoint)
         self.soup = soup(self.url)
         self.patch_html = self._soup_cleaner()
 

@@ -1,7 +1,5 @@
 from ...PatchTrackerApp.utils import url_generator, soup
-
-
-LOL_WIKI = "https://leagueoflegends.fandom.com/wiki/Patch_(League_of_Legends)"
+from django.conf import settings
 
 class LoLScraper:
     def __init__(self) -> None:
@@ -13,7 +11,7 @@ class LoLScraper:
         
     def _find_seasons_ul(self):
         '''Finds Seasons ul tag from soup'''
-        seasons_soup = soup(LOL_WIKI)
+        seasons_soup = soup(settings.LOL_WIKI)
         span = seasons_soup.find('span', class_= 'mw-headline')
         h2 = span.find_parent('h2')
         ul = h2.find_next_sibling('ul')
