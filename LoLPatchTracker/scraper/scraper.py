@@ -6,10 +6,10 @@ class LoLScraper:
         self.seasons = self._seasons()
             
     def _seasons(self):
-        seasons = [li.text for li in self.find_seasons_ul() if li.text != '\n']
+        seasons = [li.text for li in self._find_seasons_ul() if li.text != '\n']
         return seasons
         
-    def find_seasons_ul(self):
+    def _find_seasons_ul(self):
         '''Finds Seasons ul tag from soup'''
         span = self.soup.find('span', class_= 'mw-headline')
         h2 = span.find_parent('h2')
