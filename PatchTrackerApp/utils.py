@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 
 
 def url_generator(base_url:str, patch_endpoint: str):
-    """Generates a URL for a specific endpoint."""
+    """Generates a URL for a specific url and endpoint."""
     return f"{base_url}{patch_endpoint}"
 
 
