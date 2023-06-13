@@ -3,7 +3,6 @@ from django.conf import settings
 
 
 
-URL = "https://valorant.fandom.com/wiki/Patch_Notes"
 
 class ValorantVersionFetcher:
     def __init__(self) -> None:

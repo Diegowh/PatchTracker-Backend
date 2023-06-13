@@ -94,8 +94,8 @@ class PatchesScraper(SeasonsScraper):
         return all_seasons_patches
 
 class NotesScraper:
-    def __init__(self, patch_endpoint) -> None:
-        self.url = url_generator(settings.LOL_WIKI, patch_endpoint)
+    def _clean_html(self):
+        ...
         
         
 class LoLScraper(PatchesScraper, NotesScraper):

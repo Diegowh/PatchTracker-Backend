@@ -33,4 +33,10 @@ def patches_tbody() -> dict:
 
 
 
-print(patches_tbody())
+def clean_html():
+    url = "https://www.leagueoflegends.com/en-us/news/game-updates/patch-9-1-notes/"
+    
+    patchonte_soup = soup(url)
+    return patchonte_soup
+
+print(clean_html())
