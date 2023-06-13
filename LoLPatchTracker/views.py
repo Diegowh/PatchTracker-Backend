@@ -6,5 +6,5 @@ import json
 def test_view(request):
     test_endpoint = "/Season_Thirteen"
     scraper = LoLScraper()
-    result = scraper._seasons()
+    result = scraper._all_season_urls()
     return HttpResponse(json.dumps(result), content_type="application/json")

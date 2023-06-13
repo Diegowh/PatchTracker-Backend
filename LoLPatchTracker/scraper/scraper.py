@@ -30,12 +30,9 @@ class SeasonsScraper:
 
 
 class PatchesScraper(SeasonsScraper):
-    # def _find_patch_tbody(self):
-    #     all_seasons_urls = []
-    #     for season, endpoint in self._seasons():
-            
-    #     patches_soup = soup()
-        pass
+    def _patches_urls(self):
+        '''Returns a list with all season urls.'''
+        return [url_generator(settings.LOL_WIKI, endpoint) for _, endpoint in self._seasons().items()]
 
 
 class NotesScraper:
