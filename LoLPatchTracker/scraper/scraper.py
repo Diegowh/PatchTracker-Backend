@@ -30,7 +30,7 @@ class SeasonsScraper:
 
 
 class PatchesScraper(SeasonsScraper):
-    def _patches_urls(self):
+    def _patches_urls(self) -> list:
         '''Returns a list with all urls.'''
         urls = []
         endpoints = list(self._seasons().values())
@@ -42,7 +42,8 @@ class PatchesScraper(SeasonsScraper):
         
         return urls
     
-    def _patches_tbody(self):
+    def _patches_tbody(self) -> dict:
+        '''Returns a dict with seasons and preseasons tbody.'''
         all_tbody = {}
         for url in self._patches_urls():
             tbody_soup = soup(url)
