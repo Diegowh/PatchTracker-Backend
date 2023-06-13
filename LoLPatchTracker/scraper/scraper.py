@@ -5,6 +5,7 @@ from django.conf import settings
     
 class SeasonScraper:
     def seasons(self) -> list:
+        '''Returns a list of all season names.'''
         seasons = [season for season in self._get_season_endpoints()]
         return seasons
         
