@@ -3,7 +3,7 @@ from django.conf import settings
 
 
     
-class SeasonScraper:
+class SeasonsScraper:
     def _seasons(self) -> dict:
         '''Returns a dict of all season names and their endpoints since Season Nine'''
         all_season_endpoints =self._get_season_endpoints()
@@ -28,16 +28,15 @@ class SeasonScraper:
         return endpoint_dict
 
 
-class PatchScraper(SeasonScraper):
+class PatchesScraper(SeasonsScraper):
     pass
-
 
 class NotesScraper:
     def __init__(self, patch_endpoint) -> None:
         self.url = url_generator(settings.LOL_WIKI, patch_endpoint)
         
         
-class LoLScraper(PatchScraper, NotesScraper):
+class LoLScraper(PatchesScraper, NotesScraper):
     def __init__(self) -> None:
         pass
             
