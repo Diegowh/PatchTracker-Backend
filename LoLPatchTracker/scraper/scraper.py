@@ -31,7 +31,7 @@ class SeasonsScraper:
 
 class PatchesScraper(SeasonsScraper):
     def _patches_urls(self):
-        '''Returns a list with all season urls.'''
+        '''Returns a list with all urls.'''
         return [url_generator(settings.LOL_WIKI, endpoint) for _, endpoint in self._seasons().items()]
 
 
