@@ -24,12 +24,19 @@ class SeasonsScraper:
         for li in self._find_seasons_ul():
             a_tag = li.find('a')
             if a_tag:
-                endpoint_dict[a_tag.text] = a_tag.get('href')
+                href = a_tag.get('href')
+                endpoint_dict[a_tag.text] = href.split(')')[-1]
         return endpoint_dict
 
 
 class PatchesScraper(SeasonsScraper):
-    pass
+    # def _find_patch_tbody(self):
+    #     all_seasons_urls = []
+    #     for season, endpoint in self._seasons():
+            
+    #     patches_soup = soup()
+        pass
+
 
 class NotesScraper:
     def __init__(self, patch_endpoint) -> None:
