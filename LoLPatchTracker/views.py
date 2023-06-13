@@ -4,9 +4,9 @@ from .scraper.scraper import LoLScraper
 
 def test_view(request):
     test_endpoint = "/Season_Thirteen"
-    scraper = LoLScraper(test_endpoint)
+    scraper = LoLScraper()
     result = []
-    for season in scraper.seasons:
+    for season in scraper._seasons():
         result.append(season + ', ')
     
     return HttpResponse(result)

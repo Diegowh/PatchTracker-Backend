@@ -4,10 +4,10 @@ from django.conf import settings
 
     
 class SeasonScraper:
-    def seasons(self) -> list:
-        '''Returns a list of all season names.'''
+    def _seasons(self) -> list:
+        '''Returns a list of all season names since Season Nine'''
         seasons = [season for season in self._get_season_endpoints()]
-        return seasons
+        return seasons[:-10]
         
     def _find_seasons_ul(self):
         '''Finds Seasons ul tag from soup'''
