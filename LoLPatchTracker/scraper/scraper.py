@@ -1,12 +1,10 @@
-from ...PatchTrackerApp.utils import url_generator, soup
+from PatchTrackerApp.utils import url_generator, soup
 from django.conf import settings
 
-class LoLScraper:
-    def __init__(self, patch_endpoint) -> None:
-        self.url = url_generator(settings.LOL_WIKI, patch_endpoint)
-        self.seasons = self._seasons()
-            
-    def _seasons(self):
+
+    
+class SeasonScraper:
+    def seasons(self) -> list:
         seasons = [season for season in self._get_season_endpoints()]
         return seasons
         
@@ -28,3 +26,19 @@ class LoLScraper:
             else:
                 print("No A tag found.")
         return endpoint_dict
+
+
+class PatchScraper:
+    pass
+
+
+class NotesScraper:
+    def __init__(self, patch_endpoint) -> None:
+        self.url = url_generator(settings.LOL_WIKI, patch_endpoint)
+        
+        
+class LoLScraper(SeasonScraper, PatchScraper, NotesScraper):
+    def __init__(self) -> None:
+        pass
+            
+

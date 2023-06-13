@@ -1,4 +1,4 @@
-from ...PatchTrackerApp.utils import  soup
+from PatchTrackerApp.utils import  soup
 from django.conf import settings
 
 
