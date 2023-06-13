@@ -42,6 +42,18 @@ class PatchesScraper(SeasonsScraper):
         
         return urls
     
+    def _patches_tbody(self):
+        all_tbody = {}
+        for url in self._patches_urls():
+            tbody_soup = soup(url)
+            tbody = tbody_soup.find('tbody')
+            
+            # Obtener el nombre de la season para el dict de tbody
+            season_name = url.split('#')[-1] if '#' in url else url.split('/')[-1]
+            
+            all_tbody[season_name] = str(tbody)
+        
+        return all_tbody
 
 class NotesScraper:
     def __init__(self, patch_endpoint) -> None:
