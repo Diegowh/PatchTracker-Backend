@@ -28,7 +28,7 @@ class SeasonScraper:
         return endpoint_dict
 
 
-class PatchScraper:
+class PatchScraper(SeasonScraper):
     pass
 
 
@@ -37,7 +37,7 @@ class NotesScraper:
         self.url = url_generator(settings.LOL_WIKI, patch_endpoint)
         
         
-class LoLScraper(SeasonScraper, PatchScraper, NotesScraper):
+class LoLScraper(PatchScraper, NotesScraper):
     def __init__(self) -> None:
         pass
             
