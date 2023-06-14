@@ -108,17 +108,26 @@ class NotesScraper:
     
     def _sections_container_cleaner(self):
         parent_section = self._get_sections_container()
-        divs = [child for child in parent_section.children if isinstance(child, Tag) and child.name == 'div']
+        try:
+            divs = [child for child in parent_section.children if isinstance(child, Tag) and child.name == 'div']
+        except AttributeError:
+            pass
         
-        if len(divs) >= 2:
-            divs[-1].decompose()
-            divs[-2].decompose()
+        else:
+            if len(divs) >= 2:
+                divs[-1].decompose()
+                divs[-2].decompose()
             
         return parent_section
     
     def _get_h1(self):
-        h1_section = self.parent_section.section
-        return h1_section.h1
+        try:
+            h1_section = self.parent_section.section
+        except AttributeError:
+            pass
+        else:
+            h1 = h1_section.h1
+        return h1
     
     def _notes_section_cleaner(self):
         section = self.parent_section.find_all('section')[1]
