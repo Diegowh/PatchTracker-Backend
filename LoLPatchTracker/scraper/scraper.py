@@ -3,7 +3,6 @@ from django.conf import settings
 from bs4 import Tag
 
 
-    
 class SeasonsScraper:
     def _seasons(self) -> dict:
         '''Returns a dict of all season names and their endpoints since Season Nine'''
@@ -133,8 +132,7 @@ class NotesScraper:
         
         
         
-        
-class LoLScraper(PatchesScraper, NotesScraper):
+class LoLScraper(PatchesScraper):
     def __init__(self) -> None:
         pass
             
