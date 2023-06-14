@@ -122,8 +122,15 @@ class NotesScraper:
     
     def _notes_section_cleaner(self):
         section = self.parent_section.find_all('section')[1]
-        section.aside.decompose()
-        section.button.decompose()
+        try:
+            section.aside.decompose()
+        except AttributeError:
+            pass
+        
+        try:
+            section.button.decompose()
+        except AttributeError:
+            pass
         
         return section
     
