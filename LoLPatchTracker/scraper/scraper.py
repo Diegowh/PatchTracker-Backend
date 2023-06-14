@@ -128,12 +128,10 @@ class NotesScraper:
         return section
     
     def _html_constructor(self):
-        return self.h1 + self.notes_section
+        return str(self.h1) + str(self.notes_section)
         
         
         
 class LoLScraper(PatchesScraper):
     def __init__(self) -> None:
         pass
-            
-
