@@ -94,8 +94,15 @@ class PatchesScraper(SeasonsScraper):
         return all_seasons_patches
 
 class NotesScraper:
-    def _clean_html(self):
-        ...
+    def __init__(self, url) -> None:
+        self.url = url
+    
+    def _get_sections_container(self):
+        '''Return the parent <section> tag with the patch note content.'''
+        patchnote_soup = soup(self.url)
+        return patchnote_soup.find('section')
+    
+
         
         
 class LoLScraper(PatchesScraper, NotesScraper):
