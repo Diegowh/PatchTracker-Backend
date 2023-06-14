@@ -99,6 +99,8 @@ class NotesScraper:
         self.url = url
         self.parent_section = self._sections_container_cleaner()
         self.h1 = self._get_h1()
+        self.notes_section = self._notes_section_cleaner()
+        self.html = self._html_constructor()
     
     def _get_sections_container(self):
         '''Return the parent <section> tag with the patch note content.'''
@@ -118,6 +120,16 @@ class NotesScraper:
     def _get_h1(self):
         h1_section = self.parent_section.section
         return h1_section.h1
+    
+    def _notes_section_cleaner(self):
+        section = self.parent_section.find_all('section')[1]
+        section.aside.decompose()
+        section.button.decompose()
+        
+        return section
+    
+    def _html_constructor(self):
+        return self.h1 + self.notes_section
         
         
         

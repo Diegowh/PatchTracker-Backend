@@ -33,26 +33,47 @@ def patches_tbody() -> dict:
 
 
 
-def clean_html():
-    url = "https://www.leagueoflegends.com/en-us/news/game-updates/patch-9-1-notes/"
+url = "https://www.leagueoflegends.com/en-us/news/game-updates/patch-9-1-notes/"
     
-    patchnote_soup = soup(url)
-    sections_container = patchnote_soup.find('section')
-    return sections_container
-
-
-def sections_container_cleaner():
-    parent_section = clean_html()
-    divs = [child for child in parent_section.children if isinstance(child, Tag) and child.name == 'div']
+class NotesScraper:
+    def __init__(self, url) -> None:
+        self.url = url
+        self.parent_section = self._sections_container_cleaner()
+        self.h1 = self._get_h1()
+        self.notes_section = self._notes_section_cleaner()
+        self.html = self._html_constructor()
         
-    if len(divs) >= 2:
-        divs[-1].decompose()
-        divs[-2].decompose()
+    
+    def _get_sections_container(self):
+        '''Return the parent <section> tag with the patch note content.'''
+        patchnote_soup = soup(self.url)
+        return patchnote_soup.find('section')
+    
+    def _sections_container_cleaner(self):
+        parent_section = self._get_sections_container()
+        divs = [child for child in parent_section.children if isinstance(child, Tag) and child.name == 'div']
+        
+        if len(divs) >= 2:
+            divs[-1].decompose()
+            divs[-2].decompose()
             
-    return parent_section
-
-def get_h1():
-    h1section = sections_container_cleaner().section
-    return h1section.h1
-
-print(get_h1())
+        return parent_section
+    
+    def _get_h1(self):
+        h1_section = self.parent_section.section
+        return h1_section.h1
+    
+    def _notes_section_cleaner(self):
+        section = self.parent_section.find_all('section')[1]
+        section.aside.decompose()
+        section.button.decompose()
+        
+        return section
+    
+    def _html_constructor(self):
+        return str(self.h1) + str(self.notes_section)
+        
+        
+        
+note_scraper = NotesScraper(url=url)
+print(note_scraper.html)
