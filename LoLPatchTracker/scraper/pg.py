@@ -1,5 +1,5 @@
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
 
 def url_generator(base_url:str, patch_endpoint: str):
     """Generates a URL for a specific url and endpoint."""
@@ -40,4 +40,15 @@ def clean_html():
     sections_container = patchnote_soup.find('section')
     return sections_container
 
-print(clean_html())
+
+def sections_container_cleaner():
+    parent_section = clean_html()
+    divs = [child for child in parent_section.children if isinstance(child, Tag) and child.name == 'div']
+        
+    if len(divs) >= 2:
+        divs[-1].decompose()
+        divs[-2].decompose()
+            
+    return parent_section
+
+print(sections_container_cleaner())

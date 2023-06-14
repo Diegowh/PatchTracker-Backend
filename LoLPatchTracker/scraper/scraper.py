@@ -1,5 +1,6 @@
 from PatchTrackerApp.utils import url_generator, soup
 from django.conf import settings
+from bs4 import Tag
 
 
     
@@ -102,7 +103,15 @@ class NotesScraper:
         patchnote_soup = soup(self.url)
         return patchnote_soup.find('section')
     
-
+    def _sections_container_cleaner(self):
+        parent_section = self._get_sections_container()
+        divs = [child for child in parent_section.children if isinstance(child, Tag) and child.name == 'div']
+        
+        if len(divs) >= 2:
+            divs[-1].decompose()
+            divs[-2].decompose()
+            
+        return parent_section
         
         
 class LoLScraper(PatchesScraper, NotesScraper):
