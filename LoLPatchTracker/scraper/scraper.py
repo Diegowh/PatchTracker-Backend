@@ -97,6 +97,8 @@ class PatchesScraper(SeasonsScraper):
 class NotesScraper:
     def __init__(self, url) -> None:
         self.url = url
+        self.parent_section = self._sections_container_cleaner()
+        self.h1 = self._get_h1()
     
     def _get_sections_container(self):
         '''Return the parent <section> tag with the patch note content.'''
@@ -112,6 +114,12 @@ class NotesScraper:
             divs[-2].decompose()
             
         return parent_section
+    
+    def _get_h1(self):
+        h1_section = self.parent_section.section
+        return h1_section.h1
+        
+        
         
         
 class LoLScraper(PatchesScraper, NotesScraper):

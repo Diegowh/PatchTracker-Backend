@@ -51,4 +51,8 @@ def sections_container_cleaner():
             
     return parent_section
 
-print(sections_container_cleaner())
+def get_h1():
+    h1section = sections_container_cleaner().section
+    return h1section.h1
+
+print(get_h1())
