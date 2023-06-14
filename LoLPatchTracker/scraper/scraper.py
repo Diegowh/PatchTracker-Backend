@@ -96,10 +96,13 @@ class PatchesScraper(SeasonsScraper):
 class NotesScraper:
     def __init__(self, url) -> None:
         self.url = url
-        self.parent_section = self._sections_container_cleaner()
-        self.h1 = self._get_h1()
-        self.notes_section = self._notes_section_cleaner()
-        self.html = self._html_constructor()
+        try:
+            self.parent_section = self._sections_container_cleaner()
+            self.h1 = self._get_h1()
+            self.notes_section = self._notes_section_cleaner()
+            self.html = self._html_constructor()
+        except:
+            pass
     
     def _get_sections_container(self):
         '''Return the parent <section> tag with the patch note content.'''
@@ -123,11 +126,11 @@ class NotesScraper:
     def _get_h1(self):
         try:
             h1_section = self.parent_section.section
-        except AttributeError:
-            pass
-        else:
             h1 = h1_section.h1
-        return h1
+            return h1
+        except AttributeError:
+            return None
+
     
     def _notes_section_cleaner(self):
         section = self.parent_section.find_all('section')[1]
@@ -159,6 +162,9 @@ class LoLScraper(PatchesScraper):
             for patch in patches:
                 url = patch['url']
                 notes_scraper = NotesScraper(url)
-                patch['notes'] = notes_scraper.html
+                try:
+                    patch['notes'] = notes_scraper.html
+                except AttributeError:
+                    continue
                 
         return all_seasons_data
