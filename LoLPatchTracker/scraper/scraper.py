@@ -134,4 +134,15 @@ class NotesScraper:
         
 class LoLScraper(PatchesScraper):
     def __init__(self) -> None:
-        pass
+        self.all_seasons_data = self._get_all_seasons_data()
+    
+    def _get_all_seasons_data(self):
+        all_seasons_data = self._season_patches_data()
+        
+        for _, patches in all_seasons_data.items():
+            for patch in patches:
+                url = patch['url']
+                notes_scraper = NotesScraper(url)
+                patch['notes'] = notes_scraper.html
+                
+        return all_seasons_data
