@@ -15,7 +15,18 @@ class DBManager:
             )
     
     def _create_patches(self):
-        pass
+        for season_name, patches in self.all_data.items():
+            season = Season.objects.get(name=season_name)
+            for patch_data in patches:
+                Patch.objects.update_or_create(
+                    name=patch_data['patch'],
+                    season=season,
+                    defaults={
+                        'date': patch_data['date'],
+                        'new_champion': patch_data['new_champion'],
+                        'url': patch_data['url'],
+                    }
+                )
     
     def _create_notes(self):
         pass
