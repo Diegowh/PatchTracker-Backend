@@ -7,7 +7,7 @@ class SeasonsScraper:
     def _seasons(self) -> dict:
         '''Returns a dict of all season names and their endpoints since Season Nine'''
         all_season_endpoints =self._get_season_endpoints()
-        valid_seasons = list(all_season_endpoints.keys())[:-10]
+        valid_seasons = list(all_season_endpoints.keys())[:-11] # Para obtener desde la season 10.
         return {season: all_season_endpoints[season] for season in valid_seasons}
         
     def _find_seasons_ul(self):
