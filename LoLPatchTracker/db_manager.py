@@ -26,9 +26,15 @@ class DBManager:
                     'url': patch_data['url']
                 }
             )
+            self._create_notes(patch, patch_data['notes'])
     
-    def _create_notes(self):
-        pass
+    def _create_notes(self, patch, html_notes):
+        Notes.objects.update_or_create(
+            patch=patch, 
+            defautls={
+                'html':html_notes,
+            }
+        )
     
     def update(self):
-        pass
+        self._create_seasons()
