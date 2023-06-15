@@ -73,6 +73,10 @@ class PatchesScraper(SeasonsScraper):
             for row in rows:
                 date_and_url_element = row.find('th')
                 date = date_and_url_element.get_text(strip=True)
+                
+                date = re.sub(r'(\d{1,2})(\d{4})', r'\1 \2', date)
+                date = date.split('[')[0].strip()
+                
                 url = date_and_url_element.find('a', class_="external autonumber")['href']
                 
                 patch_element = row.find('td')
