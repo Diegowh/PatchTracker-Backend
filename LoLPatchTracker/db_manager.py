@@ -20,7 +20,7 @@ class DBManager:
             patch, _ = Patch.objects.update_or_create(
                 name=patch_data['patch'],
                 season=season,
-                defautls={
+                defaults={
                     'date': patch_data['date'],
                     'new_champion': patch_data['new_champion'],
                     'url': patch_data['url']
@@ -31,7 +31,7 @@ class DBManager:
     def _create_notes(self, patch, html_notes):
         Notes.objects.update_or_create(
             patch=patch, 
-            defautls={
+            defaults={
                 'html':html_notes,
             }
         )
