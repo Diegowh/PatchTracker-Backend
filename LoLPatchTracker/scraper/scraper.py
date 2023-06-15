@@ -106,12 +106,12 @@ class NotesScraper:
         self.notes_section = self._notes_section_cleaner()
         self.html = self._html_constructor()
     
-    def _get_sections_container(self):
+    def _get_sections_container(self) -> Tag:
         '''Return the parent <section> tag with the patch note content.'''
         patchnote_soup = soup(self.url)
         return patchnote_soup.find('section')
     
-    def _sections_container_cleaner(self):
+    def _sections_container_cleaner(self) -> Tag:
         parent_section = self._get_sections_container()
         try:
             divs = [child for child in parent_section.children if isinstance(child, Tag) and child.name == 'div']
@@ -125,7 +125,7 @@ class NotesScraper:
             
         return parent_section
     
-    def _get_h1(self):
+    def _get_h1(self) -> Tag | None:
         try:
             h1_section = self.parent_section.section
             h1 = h1_section.h1
@@ -134,7 +134,7 @@ class NotesScraper:
             return None
 
     
-    def _notes_section_cleaner(self):
+    def _notes_section_cleaner(self) -> Tag:
         section = self.parent_section.find_all('section')[1]
         try:
             section.aside.decompose()
@@ -148,7 +148,7 @@ class NotesScraper:
         
         return section
     
-    def _html_constructor(self):
+    def _html_constructor(self) -> str:
         return str(self.h1) + str(self.notes_section)
         
         
@@ -157,7 +157,7 @@ class LoLScraper(PatchesScraper):
     def __init__(self) -> None:
         self.all_seasons_data = self._get_all_seasons_data()
     
-    def _get_all_seasons_data(self):
+    def _get_all_seasons_data(self) -> dict[str, list[str]]:
         all_seasons_data = self._season_patches_data()
         
         for _, patches in all_seasons_data.items():
