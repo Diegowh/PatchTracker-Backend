@@ -99,7 +99,7 @@ class PatchesScraper(SeasonsScraper):
         return all_seasons_patches
 
 class NotesScraper:
-    def __init__(self, url) -> None:
+    def __init__(self, url: str) -> None:
         self.url = url
         self.parent_section = self._sections_container_cleaner()
         self.h1 = self._get_h1()
