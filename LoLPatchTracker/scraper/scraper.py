@@ -162,9 +162,6 @@ class LoLScraper(PatchesScraper):
             for patch in patches:
                 url = patch['url']
                 notes_scraper = NotesScraper(url)
-                try:
-                    patch['notes'] = notes_scraper.html
-                except AttributeError:
-                    continue
+                patch['notes'] = notes_scraper.html
                 
         return all_seasons_data
