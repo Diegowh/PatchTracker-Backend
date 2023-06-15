@@ -1,6 +1,7 @@
 from PatchTrackerApp.utils import url_generator, soup
 from django.conf import settings
 from bs4 import Tag
+import re
 
 
 class SeasonsScraper:
