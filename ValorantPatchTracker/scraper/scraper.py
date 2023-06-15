@@ -1,5 +1,5 @@
 from bs4 import NavigableString, Comment
-from ...PatchTrackerApp.utils import url_generator, soup
+from PatchTrackerApp.utils import url_generator, soup
 from .tag_remover import TagRemover
 from django.conf import settings
 
