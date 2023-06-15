@@ -5,13 +5,13 @@ import re
 
 
 class SeasonsScraper:
-    def _seasons(self) -> dict:
+    def _seasons(self) -> dict[str, str]:
         '''Returns a dict of all season names and their endpoints since Season Nine'''
         all_season_endpoints =self._get_season_endpoints()
         valid_seasons = list(all_season_endpoints.keys())[:-11] # Para obtener desde la season 10.
         return {season: all_season_endpoints[season] for season in valid_seasons}
         
-    def _find_seasons_ul(self):
+    def _find_seasons_ul(self) -> list[str]:
         '''Finds Seasons ul tag from soup'''
         seasons_soup = soup(settings.LOL_WIKI)
         span = seasons_soup.find('span', class_= 'mw-headline')
@@ -19,7 +19,7 @@ class SeasonsScraper:
         ul = h2.find_next_sibling('ul')
         return ul.find_all('li')
     
-    def _get_season_endpoints(self):
+    def _get_season_endpoints(self) -> dict[str, str]:
         '''Returns a dictionary with all seasons endpoint.'''
         endpoint_dict = {}
         for li in self._find_seasons_ul():
@@ -31,7 +31,7 @@ class SeasonsScraper:
 
 
 class PatchesScraper(SeasonsScraper):
-    def _patches_urls(self) -> list:
+    def _patches_urls(self) -> list[str]:
         '''Returns a list with all urls.'''
         urls = []
         endpoints = list(self._seasons().values())
@@ -43,7 +43,7 @@ class PatchesScraper(SeasonsScraper):
         
         return urls
     
-    def _patches_tbody(self) -> dict:
+    def _patches_tbody(self) -> dict[str, str]:
         '''Returns a dict with seasons and preseasons tbody.'''
         all_tbody = {}
         for i, url in enumerate(self._patches_urls()):
@@ -62,7 +62,7 @@ class PatchesScraper(SeasonsScraper):
         
         return all_tbody
     
-    def _season_patches_data(self):
+    def _season_patches_data(self) -> dict[str, list[str]]:
         all_seasons_patches = {}
         for season, tbody in self._patches_tbody().items():
             
@@ -101,13 +101,10 @@ class PatchesScraper(SeasonsScraper):
 class NotesScraper:
     def __init__(self, url) -> None:
         self.url = url
-        try:
-            self.parent_section = self._sections_container_cleaner()
-            self.h1 = self._get_h1()
-            self.notes_section = self._notes_section_cleaner()
-            self.html = self._html_constructor()
-        except:
-            pass
+        self.parent_section = self._sections_container_cleaner()
+        self.h1 = self._get_h1()
+        self.notes_section = self._notes_section_cleaner()
+        self.html = self._html_constructor()
     
     def _get_sections_container(self):
         '''Return the parent <section> tag with the patch note content.'''
