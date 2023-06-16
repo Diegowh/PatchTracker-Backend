@@ -12,3 +12,16 @@ def test_view(request):
     scraper = LoLScraper()
     result = scraper.all_seasons_data
     return HttpResponse(json.dumps(result), content_type="application/json")
+
+
+class SeasonView(viewsets.ModelViewSet):
+    queryset = Season.objects.all()
+    serializer_class = SeasonSerializer
+    
+class PatchView(viewsets.ModelViewSet):
+    queryset = Patch.objects.all()
+    serializer_class = PatchSerializer
+    
+class NotesView(viewsets.ModelViewSet):
+    queryset = Notes.objects.all()
+    serializer_class = NotesSerializer
