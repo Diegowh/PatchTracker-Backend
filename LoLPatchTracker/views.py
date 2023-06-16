@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from .scraper.scraper import LoLScraper
 import json
 
+from rest_framework import viewsets
+
 def test_view(request):
     test_endpoint = "/Season_Thirteen"
     scraper = LoLScraper()
