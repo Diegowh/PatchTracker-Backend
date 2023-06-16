@@ -4,6 +4,8 @@ from .scraper.scraper import LoLScraper
 import json
 
 from rest_framework import viewsets
+from .models import Season, Patch, Notes
+from . serializers import SeasonSerializer, PatchSerializer, NotesSerializer
 
 def test_view(request):
     test_endpoint = "/Season_Thirteen"
