@@ -1,13 +1,8 @@
 # PatchTracker (Backend)
 
-<<<<<<< HEAD
 ## Description
 
 > This repository contains the backend system of an application designed to display patch notes for Valorant and League of Legends. 
-
-##
-=======
-> This repository contains the backend system of an application designed to display patch notes for Valorant. 
 
 ## Tech stack
 
@@ -24,13 +19,16 @@ The backend provides the data to the front end developed in Swift. It utilizes t
 You can access to the frontend repo here: https://github.com/Diegowh/PatchTracker-ios-app
 
 ## Default localhost API Root:
-http://127.0.0.1:8000/ValorantPatchTracker/
+http://127.0.0.1:8000/api/
 
 ### Endpoints
-* GET `/episodes/`: Return all Episodes for Valorant (including Closed Beta).
-* GET `/patchnotes/`: Return all Versions/Patch Notes for Valorant.
-* GET `/contents/`: Return all content for each Version/Patch note for Valorant.
-* GET `/contents/?patch_note=<patch_note_id>`: Returns the content for a specific patch note.
+* GET `valorant/episodes/`: Return all Episodes for Valorant (including Closed Beta).
+* GET `valorant/patchnotes/`: Return all Versions/Patch Notes for Valorant.
+* GET `valorant/contents/`: Return all content for each Version/Patch note for Valorant.
+* GET `valorant/contents/?patch_note=<patch_note_id>`: Returns the content for a specific patch note.
+* GET `lol/seasons/`: Return all Seasons for League of Legends since Season Ten.
+* GET `lol/patchnotes/`: Return all Patches for League of Legends since Season Ten.
+* GET `lol/contents/`: Return all PatchNotes for League of Legends sinec Season Ten.
 
 ## Installation and Setup
 > Here are the steps to run the backend on your local machine:
@@ -72,9 +70,6 @@ python manage.py update_db
 python manage.py runserver
 ```
 
-## Future scope
-
-In the pipeline is the addition of League of Legends data to the app, allowing users to view the patch notes of both Valorant and LoL through a single, unified interface.
 
 ## Contributions
 
