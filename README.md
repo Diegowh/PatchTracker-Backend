@@ -27,8 +27,8 @@ http://127.0.0.1:8000/api/
 * GET `valorant/contents/`: Return all content for each Version/Patch note for Valorant.
 * GET `valorant/contents/?patch_note=<patch_note_id>`: Returns the content for a specific patch note.
 * GET `lol/seasons/`: Return all Seasons for League of Legends since Season Ten.
-* GET `lol/patchnotes/`: Return all Patches for League of Legends since Season Ten.
-* GET `lol/contents/`: Return all PatchNotes for League of Legends sinec Season Ten.
+* GET `lol/patches/`: Return all Patches for League of Legends since Season Ten.
+* GET `lol/notes/`: Return all PatchNotes for League of Legends sinec Season Ten.
 
 ## Installation and Setup
 > Here are the steps to run the backend on your local machine:
