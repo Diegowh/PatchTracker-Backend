@@ -24,6 +24,7 @@ http://127.0.0.1:8000/api/
 ### Endpoints
 * GET `valorant/episodes/`: Return all Episodes for Valorant (including Closed Beta).
 * GET `valorant/patchnotes/`: Return all Versions/Patch Notes for Valorant.
+* GET `valorant/patchnotes/?episode=<episode_id>`: Return all Versions/Patch Notes for a specific episode.
 * GET `valorant/contents/`: Return all content for each Version/Patch note for Valorant.
 * GET `valorant/contents/?patch_note=<patch_note_id>`: Returns the content for a specific patch note.
 * GET `lol/seasons/`: Return all Seasons for League of Legends since Season Ten.
