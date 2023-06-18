@@ -21,7 +21,9 @@ class SeasonView(viewsets.ModelViewSet):
 class PatchView(viewsets.ModelViewSet):
     queryset = Patch.objects.all()
     serializer_class = PatchSerializer
+    filterset_class = PatchFilter
     
 class NotesView(viewsets.ModelViewSet):
     queryset = Notes.objects.all()
     serializer_class = NotesSerializer
+    filterset_class = NotesFilter
