@@ -1,1 +1,2 @@
-# TODO: Crear filters para patches y para notes
+import django_filters
+from .models import Patch, Notes
