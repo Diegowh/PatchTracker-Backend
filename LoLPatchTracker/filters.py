@@ -7,7 +7,7 @@ class PatchFilter(django_filters.filterset):
         fields = ['season']
         
         
-class NotesFIlter(django_filters.filterset):
+class NotesFilter(django_filters.filterset):
     class Meta:
         model = Notes
         fields = ['patch']

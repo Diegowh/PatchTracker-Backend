@@ -6,6 +6,7 @@ import json
 from rest_framework import viewsets
 from .models import Season, Patch, Notes
 from . serializers import SeasonSerializer, PatchSerializer, NotesSerializer
+from .filters import PatchFilter, NotesFilter
 
 def test_view(request):
     scraper = LoLScraper()
