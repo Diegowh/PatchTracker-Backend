@@ -131,20 +131,15 @@ class NotesScraper:
         h1_section = self.parent_section.section if hasattr(self.parent_section, 'section') else None
         h1 = h1_section.h1 if h1_section and hasattr(h1_section, 'h1') else None
         return h1
-
     
     def _notes_section_cleaner(self) -> Tag:
         section = self.parent_section.find_all('section')[1]
-        try:
+        if hasattr(section, 'aside'):
             section.aside.decompose()
-        except AttributeError:
-            pass
-        
-        try:
+
+        if hasattr(section, 'button'):
             section.button.decompose()
-        except AttributeError:
-            pass
-        
+
         return section
     
     def _html_constructor(self) -> str:
