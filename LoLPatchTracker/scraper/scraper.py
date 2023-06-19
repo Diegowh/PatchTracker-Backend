@@ -3,7 +3,17 @@ from django.conf import settings
 from bs4 import Tag
 import re
 
+# Decorators
+def check_tbodies(func):
+    def wrapper(*args, **kwargs):
+        tbodies = func(*args, **kwargs)
+        if len(tbodies)!= 2:
+            raise ValueError('HTML contains more than 2 tbody elements.')
+        return tbodies
+    return wrapper
 
+
+# Scraper
 class SeasonsScraper:
     def _seasons(self) -> dict[str, str]:
         '''Returns a dict of all season names and their endpoints since Season Nine'''
