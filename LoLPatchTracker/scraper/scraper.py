@@ -128,12 +128,9 @@ class NotesScraper:
         return parent_section
     
     def _get_h1(self) -> Tag | None:
-        try:
-            h1_section = self.parent_section.section
-            h1 = h1_section.h1
-            return h1
-        except AttributeError:
-            return None
+        h1_section = self.parent_section.section if hasattr(self.parent_section, 'section') else None
+        h1 = h1_section.h1 if h1_section and hasattr(h1_section, 'h1') else None
+        return h1
 
     
     def _notes_section_cleaner(self) -> Tag:
