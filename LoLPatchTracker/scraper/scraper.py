@@ -121,14 +121,10 @@ class NotesScraper:
     
     def _sections_container_cleaner(self) -> Tag:
         parent_section = self._get_sections_container()
-        try:
-            last_two_divs = [child for child in parent_section.children if isinstance(child, Tag) and child.name == 'div'][-2:]
-        except AttributeError:
-            pass
-        else:
-            for div in last_two_divs:
-                div.decompose()
-            
+        last_two_divs = [child for child in parent_section.children if isinstance(child, Tag) and child.name == 'div'][-2:]
+        for div in last_two_divs:
+            div.decompose()
+
         return parent_section
     
     def _get_h1(self) -> Tag | None:
