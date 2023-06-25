@@ -33,8 +33,7 @@ class SeasonsScraper:
         '''Returns a dictionary with all seasons endpoint.'''
         endpoint_dict = {}
         for li in self._find_seasons_ul():
-            a_tag = li.find('a')
-            if a_tag:
+            if (a_tag := li.find('a')):
                 href = a_tag.get('href')
                 endpoint_dict[a_tag.text] = href.split(')')[-1]
         return endpoint_dict
