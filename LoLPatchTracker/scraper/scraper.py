@@ -140,7 +140,9 @@ class NotesScraper:
         return section
     
     def _html_constructor(self) -> str:
-        return str(self.h1) + str(self.notes_section)
+        html_soup = BeautifulSoup(str(self.h1) + str(self.notes_section), 'html.parser')
+        self.strip_classes(html_soup)
+        self.html = str(html_soup)
         
         
         
