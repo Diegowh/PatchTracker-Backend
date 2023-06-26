@@ -3,15 +3,6 @@ from django.conf import settings
 from bs4 import Tag
 import re
 
-# Decorators
-def check_tbodies(func):
-    def wrapper(*args, **kwargs):
-        tbodies = func(*args, **kwargs)
-        if len(tbodies)!= 2:
-            raise ValueError('HTML contains more than 2 tbody elements.')
-        return tbodies
-    return wrapper
-
 
 # Scraper
 class SeasonsScraper:
@@ -52,13 +43,15 @@ class PatchesScraper(SeasonsScraper):
         
         return urls
     
-    @check_tbodies
     def _patches_tbody(self) -> dict[str, str]:
         '''Returns a dict with seasons and preseasons tbody.'''
         all_tbody = {}
         for i, url in enumerate(self._patches_urls()):
             tbody_soup = soup(url)
             tbodies = tbody_soup.find_all('tbody')
+            
+            if len(tbodies) != 2:
+                raise ValueError('HTML contains more than 2 tbody elements.')
             
             # Obtener el nombre de la season para el dict de tbody
             season_name = url.split('#')[-1] if '#' in url else url.split('/')[-1]
@@ -133,10 +126,11 @@ class NotesScraper:
     
     def _notes_section_cleaner(self) -> Tag:
         section = self.parent_section.find_all('section')[1]
-        if hasattr(section, 'aside'):
+
+        if section.aside is not None:
             section.aside.decompose()
 
-        if hasattr(section, 'button'):
+        if section.button is not None:
             section.button.decompose()
 
         return section
