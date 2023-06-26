@@ -10,7 +10,7 @@ class DBManager:
         for season_name in self.all_data.keys():
             first_patch = self.all_data[season_name][-1]
             season, _ = Season.objects.update_or_create(
-                name=season_name,
+                name=season_name.replace("_", " "),
                 defaults={'date': first_patch['date']}
             )
             self._create_patches(season, self.all_data[season_name])
@@ -35,6 +35,10 @@ class DBManager:
                 'html':html_notes,
             }
         )
+    
+    # Creado para usarse una vez y corregir un error de entradas duplicadas. No lo borro por si lo necesito en el futuro.
+    def _delete_old_seasons(self):
+        Season.objects.filter(name__contains="_").delete()
     
     def update(self):
         self._create_seasons()

@@ -26,7 +26,7 @@ class SeasonsScraper:
         for li in self._find_seasons_ul():
             if (a_tag := li.find('a')):
                 href = a_tag.get('href')
-                endpoint_dict[a_tag.text.replace("_", " ")] = href.split(')')[-1]
+                endpoint_dict[a_tag.text] = href.split(')')[-1]
         return endpoint_dict
 
 
