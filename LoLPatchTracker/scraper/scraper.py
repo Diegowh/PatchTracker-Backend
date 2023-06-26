@@ -1,6 +1,6 @@
 from PatchTrackerApp.utils import url_generator, soup
 from django.conf import settings
-from bs4 import Tag
+from bs4 import Tag, BeautifulSoup
 import re
 
 
@@ -105,6 +105,10 @@ class NotesScraper:
         self.h1 = self._get_h1()
         self.notes_section = self._notes_section_cleaner()
         self.html = self._html_constructor()
+        
+    def strip_classes(self, soup: BeautifulSoup) -> None:
+        for tag in soup():
+            tag.attrs = {name: value for name, value in tag.attrs.items() if name != 'class'}
     
     def _get_sections_container(self) -> Tag:
         '''Return the parent <section> tag with the patch note content.'''
