@@ -13,4 +13,4 @@ class Patch(models.Model):
     
 class Notes(models.Model):
     patch = models.ForeignKey(Patch, on_delete=models.CASCADE)
-    html = models.TextField()
+    html = models.TextField(null=True)
