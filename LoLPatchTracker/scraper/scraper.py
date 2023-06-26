@@ -140,9 +140,33 @@ class NotesScraper:
         return section
     
     def _html_constructor(self) -> str:
+        
+        def styled_html(html):
+            return f"""<!DOCTYPE html>
+            <html>
+            <head>
+            <style>
+            body {{
+                font-family: -apple-system, sans-serif;
+                font-size: 35px;
+                line-height: 1.6;
+                padding: 20px;
+                border: 2px solid #000000;
+            }}
+            a img{{
+                max-width: 100%;
+                height: auto;
+            }}
+            </style>
+            </head>
+            <body>
+            {html}
+            </body>
+            </html>
+            """
         html_soup = BeautifulSoup(str(self.h1) + str(self.notes_section), 'html.parser')
         self.strip_classes(html_soup)
-        return str(html_soup)
+        return str(styled_html(html_soup))
         
         
         
