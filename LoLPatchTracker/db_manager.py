@@ -26,6 +26,9 @@ class DBManager:
                     'url': patch_data['url']
                 }
             )
+            # Borro las notas previas para evitar duplicados.
+            Notes.objects.filter(patch=patch).delete()
+            # Creo las notas nuevas
             self._create_notes(patch, patch_data['notes'])
     
     def _create_notes(self, patch, html_notes):
