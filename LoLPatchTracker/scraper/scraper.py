@@ -108,7 +108,8 @@ class NotesScraper:
         
     def strip_classes(self, soup: BeautifulSoup) -> None:
         for tag in soup():
-            tag.attrs = {name: value for name, value in tag.attrs.items() if name != 'class'}
+            if tag.name not in ('a', 'img'):
+                tag.attrs = {name: value for name, value in tag.attrs.items() if name != 'class'}
     
     def _get_sections_container(self) -> Tag:
         '''Return the parent <section> tag with the patch note content.'''
@@ -140,7 +141,6 @@ class NotesScraper:
         return section
     
     def _html_constructor(self) -> str:
-        
         def styled_html(html):
             return f"""<!DOCTYPE html>
             <html>
