@@ -108,6 +108,7 @@ class NotesScraper:
         
     def strip_classes(self, soup: BeautifulSoup) -> None:
         for tag in soup():
+            # Checkeo si son anchor o img tags para mantener las clases en esos tags unicamente para poder dar css a las imagenes de manera global.
             if tag.name not in ('a', 'img'):
                 tag.attrs = {name: value for name, value in tag.attrs.items() if name != 'class'}
     
